@@ -1,6 +1,5 @@
 package no.hvl.dat110.rpc;
 
-import no.hvl.dat110.TODO;
 import no.hvl.dat110.messaging.*;
 
 public class RPCClient {
@@ -19,44 +18,25 @@ public class RPCClient {
 	
 	public void connect() {
 		
-		//done?
 		connection = msgclient.connect();
-		
-	    //throw new UnsupportedOperationException(TODO.method());
-			
+					
 	}
 	
 	public void disconnect() {
 		
-		//done?
 		connection.close();
-		
-		//throw new UnsupportedOperationException(TODO.method());
-		
+				
 	}
 	
 	public byte[] call(byte[] rpcrequest) {
 		
-		byte[] rpcreply;
-		
-		/* TODO: 
-		
-		Make a remote call on the RPC server by sending the RPC request message
-		and receive an RPC reply message
-		
-		rpcrequest is the marshalled rpcrequest from the client-stub
-		rpctreply is the rpcreply to be unmarshalled by the client-stub
-		
-		*/
-		
-		//riktig?
-		connection.send(new Message(rpcrequest));
-		
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
+		try {
+			connection.send(new Message(rpcrequest));
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		return rpcreply;
+		return connection.receive().getData();
 		
 	}
 
