@@ -9,14 +9,13 @@ public class Message {
 	private byte[] payload;
 
 	public Message(byte[] payload) {
-
-		if (payload.length <= 127) {
-			this.payload = payload;
-		} else {
+		// TODO: check for lenth within boundary
+		if((payload.length >= MessageConfig.SEGMENTSIZE)) {
 			payload = null;
 		}
+		this.payload = payload;
 	}
-
+	
 	public Message() {
 		super();
 	}
@@ -26,21 +25,38 @@ public class Message {
 	}
 
 	public byte[] encapsulate() {
-
+		//TODO
+		// encapsulate/encode the payload of this message in the
+		// encoded byte array according to message format
 		byte[] encoded = null;
-		encoded = new byte[128];
-		encoded[0] = (byte) payload.length;
+		encoded = new byte[MessageConfig.SEGMENTSIZE];
+		int length = payload.length;
+		encoded[0] = (byte) length;
+		
 		for (int i = 0; i <= payload.length; i++) {
-			encoded[i] = payload[i - 1];
+			encoded[i + 1] = payload[i];
 		}
-
 		return encoded;
-
 	}
 
 	public void decapsulate(byte[] received) {
 
-		//Må gjøres 
+		//TODO
+		// decapsulate the data contained in the received byte array and store it 
+		// in the payload of this message 
+		int length = received[0];
+		payload = new byte[length];
+		
+		for (int i = 0; i <= payload.length; i++) {
+			payload[i] = received[i + 1];
+=======
+
+		//Må gjøre!
+>>>>>>> branch 'master' of https://github.com/h586634/dat110-project1-startcode.git
 		}
 	}
+<<<<<<< HEAD
+}
+=======
 
+>>>>>>> branch 'master' of https://github.com/h586634/dat110-project1-startcode.git
