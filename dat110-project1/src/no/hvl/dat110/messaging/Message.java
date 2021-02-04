@@ -36,9 +36,7 @@ public class Message {
 		for (int i = 0; i <= payload.length; i++) {
 			encoded[i + 1] = payload[i];
 		}
-
 		return encoded;
-
 	}
 
 	public void decapsulate(byte[] received) {

@@ -18,13 +18,13 @@ public class MessagingClient {
 
 	// connect to messaging server
 	public Connection connect() {
-
-		Socket clientSocket;
-		Connection connection = null;
-
 		// TODO
 		// create TCP socket for client and connection
 		// create connection object
+		Socket clientSocket;
+		Connection connection = null;
+
+		
 		
 		if (true) {
 			throw new UnsupportedOperationException(TODO.method());
