@@ -49,14 +49,7 @@ public class Message {
 		
 		for (int i = 0; i <= payload.length; i++) {
 			payload[i] = received[i + 1];
-=======
 
-		//Må gjøre!
->>>>>>> branch 'master' of https://github.com/h586634/dat110-project1-startcode.git
 		}
 	}
-<<<<<<< HEAD
 }
-=======
-
->>>>>>> branch 'master' of https://github.com/h586634/dat110-project1-startcode.git
