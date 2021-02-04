@@ -39,6 +39,8 @@ public class RPCServer {
 	    
 		   int rpcid;
 		   
+		   //test
+		   
 		   // TODO
 		   // - receive message containing RPC request
 		   // - find the identifier for the RPC methods to invoke
