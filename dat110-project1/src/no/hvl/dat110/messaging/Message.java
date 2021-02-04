@@ -40,7 +40,6 @@ public class Message {
 	}
 
 	public void decapsulate(byte[] received) {
-
 		//TODO
 		// decapsulate the data contained in the received byte array and store it 
 		// in the payload of this message 
