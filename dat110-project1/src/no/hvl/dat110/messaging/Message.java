@@ -40,7 +40,7 @@ public class Message {
 
 	public void decapsulate(byte[] received) {
 
-		//Må gjøres 
+		//Må gjøre!
 		}
 	}
 
