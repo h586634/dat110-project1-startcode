@@ -40,10 +40,7 @@ public class Message {
 
 	public void decapsulate(byte[] received) {
 
-		payload = new byte[received[0]];
-		for (int i = 1; i <= received[0]; i++) {
-			payload[i - 1] = received[i];
+		//Må gjøres 
 		}
 	}
 
-}
