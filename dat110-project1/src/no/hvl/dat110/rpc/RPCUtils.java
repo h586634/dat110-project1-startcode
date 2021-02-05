@@ -1,5 +1,7 @@
 package no.hvl.dat110.rpc;
 
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 
 import no.hvl.dat110.TODO;
@@ -13,47 +15,45 @@ public class RPCUtils {
 	
 	public static byte[] marshallString(byte rpcid, String str) {
 
-		byte[] encoded;
-
-		// TODO: marshall RPC identifier and string into byte array
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		Charset charset = Charset.forName("ISO-8859-1");
+		
+		byte[] srtByteArr = charset.encode(str).array();
+		byte[] encoded = new byte[srtByteArr.length+1];
+		encoded[0] = rpcid;
+		
+		System.arraycopy(encoded, 0, encoded, 1, srtByteArr.length);
+		
+		/* lapp sammen, utgangspunkt:
+		System.arraycopy(firstArray, 0, result, 0, fal);
+		System.arraycopy(secondArray, 0, result, fal, sal);
+		*/
 
 		return encoded;
 	}
 
 	public static String unmarshallString(byte[] data) {
+		byte[] nyData = new byte[data.length-1];
+		System.arraycopy(data, 1, nyData, 0, data.length);		
 
-		String decoded;
-
-		// TODO: unmarshall String contained in data into decoded
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
-
-		return decoded;
+		return new String(nyData, Charset.forName("ISO-8859-1"));
 	}
 
 	public static byte[] marshallVoid(byte rpcid) {
 
-		byte[] encoded;
+		byte[] encoded = new byte[1];
 
-		// TODO: marshall RPC identifier in case of void type
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		encoded[0] = rpcid;
 
 		return encoded;
 
 	}
 
 	public static void unmarshallVoid(byte[] data) {
-
-		// TODO: unmarshall void type
+		/*
+		if(data.length > 1) {
+			//throw exception with stacktrace?
+		}
+		*/
 	}
 
 	public static byte[] marshallBoolean(byte rpcid, boolean b) {
@@ -79,28 +79,20 @@ public class RPCUtils {
 
 	public static byte[] marshallInteger(byte rpcid, int x) {
 
-		byte[] encoded;
-
-		// TODO: marshall RPC identifier and string into byte array
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		ByteBuffer intByteArr = ByteBuffer.allocate(4).putInt(x);
+		byte[] encoded = new byte[5];
+		
+		System.arraycopy(intByteArr, 0, encoded, 1, 4);
 
 		return encoded;
 	}
 
 	public static int unmarshallInteger(byte[] data) {
 
-		int decoded;
+		byte[] nyData = new byte[data.length-1];
+		System.arraycopy(data, 1, nyData, 0, data.length);	
 
-		// TODO: unmarshall integer contained in data
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
-
-		return decoded;
+		return ByteBuffer.wrap(nyData).getInt();
 
 	}
 }
