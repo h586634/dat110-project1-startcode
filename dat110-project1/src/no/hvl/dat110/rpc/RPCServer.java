@@ -37,23 +37,25 @@ public class RPCServer {
 
 		while (!stop) {
 
-			Message msg = connection.receive();
+			Message incoming = connection.receive();
 
-			byte[] rData = msg.getData();
+			byte[] rData = incoming.getData();
 
-			int rpcid = rData[0];
+			if (rData.length > 0) {
+				int rpcid = rData[0];
 
-			if (rpcid == RPCCommon.RPIDSTOP) {
-				stop = true;
-				continue;
-			}
+				if (rpcid == RPCCommon.RPIDSTOP) {
+					stop = true;
+					continue;
+				}
 
-			byte[] sData = services.get(rpcid).invoke(rData);
+				byte[] sData = services.get(rpcid).invoke(rData);
 
-			try {
-				connection.send(new Message(sData));
-			} catch (Exception e) {
-				e.printStackTrace();
+				try {
+					connection.send(new Message(sData));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

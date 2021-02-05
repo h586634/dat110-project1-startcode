@@ -26,14 +26,13 @@ public class MessagingServer {
 	// accept an incoming connection from a client
 	public Connection accept() {
 
+		Socket socket = null;
 		Connection connection = null;
 
 		try {
-			Socket socket = welcomeSocket.accept();
-			System.out.println("socket er " + socket);
-
+			socket = welcomeSocket.accept();
 			connection = new Connection(socket);
-			System.out.println("connection er " + connection);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
