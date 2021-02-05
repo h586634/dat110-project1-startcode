@@ -30,8 +30,9 @@ public class Connection {
 		}
 	}
 
-	public void send(Message message) {
-	
+
+	public void send(Message message) { 
+
 		byte[] msgByte = message.encapsulate();
 		
 		try {
@@ -42,7 +43,7 @@ public class Connection {
 	}
 
 	public Message receive() {
-		
+
 		Message message = new Message();
 		byte[] recvbuf = new byte[128];
 		
