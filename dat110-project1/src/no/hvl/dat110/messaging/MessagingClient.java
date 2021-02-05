@@ -20,7 +20,7 @@ public class MessagingClient {
 		Connection connection = null;
 		
 		try {
-			
+				
 			clientSocket = new Socket(server,port);
 			connection = new Connection(clientSocket);
 		} catch (IOException e) {
