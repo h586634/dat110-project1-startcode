@@ -6,7 +6,7 @@ public class Message {
 	private byte[] payload;
 
 	public Message(byte[] payload) {
-		// TODO: check for length within boundary
+		
 		if((payload.length >= MessageConfig.SEGMENTSIZE)) {
 			payload = null;
 		}
