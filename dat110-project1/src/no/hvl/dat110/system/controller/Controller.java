@@ -35,9 +35,6 @@ public class Controller {
 		displayclient.register(display);
 		sensorclient.register(sensor);
 
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
 
 		// register stop methods in the RPC layer
 		displayclient.register(stopdisplay);
@@ -50,6 +47,12 @@ public class Controller {
 			int temp = sensor.read();
 			String lesTemp = String.valueOf(temp);
 			display.write(lesTemp);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			
 		}
 
