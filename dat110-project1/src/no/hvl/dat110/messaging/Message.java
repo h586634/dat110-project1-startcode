@@ -33,7 +33,7 @@ public class Message {
 		int length = payload.length;
 		encoded[0] = (byte) length;
 		
-		for (int i = 0; i <= payload.length; i++) {
+		for (int i = 0; i < payload.length; i++) {
 			encoded[i + 1] = payload[i];
 		}
 		return encoded;
@@ -46,12 +46,9 @@ public class Message {
 		int length = received[0];
 		payload = new byte[length];
 		
-		for (int i = 0; i <= payload.length; i++) {
+		for (int i = 0; i < payload.length; i++) {
 			payload[i] = received[i + 1];
 
 		}
 	}
-
 }
-
-
