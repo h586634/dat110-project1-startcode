@@ -30,12 +30,11 @@ public class MessagingServer {
 		
 			try { 
 					Socket socket = welcomeSocket.accept();
-					System.out.println("socket er " + socket);
-					
 					connection = new Connection(socket);
-					System.out.println("connection er " + connection);
+					
 			} catch (IOException e) {
 					e.printStackTrace();
+					
 			}
 			return connection;
 	}
