@@ -1,15 +1,12 @@
 package no.hvl.dat110.messaging;
 
-import java.util.Arrays;
-
-import no.hvl.dat110.TODO;
 
 public class Message {
 
 	private byte[] payload;
 
 	public Message(byte[] payload) {
-		// TODO: check for lenth within boundary
+		// TODO: check for length within boundary
 		if((payload.length >= MessageConfig.SEGMENTSIZE)) {
 			payload = null;
 		}
@@ -25,30 +22,27 @@ public class Message {
 	}
 
 	public byte[] encapsulate() {
-		//TODO
-		// encapsulate/encode the payload of this message in the
-		// encoded byte array according to message format
-		byte[] encoded = null;
-		encoded = new byte[MessageConfig.SEGMENTSIZE];
-		int length = payload.length;
-		encoded[0] = (byte) length;
 		
-		for (int i = 0; i < payload.length; i++) {
+		byte[] encoded;
+		
+		encoded = new byte[MessageConfig.SEGMENTSIZE];
+		encoded[0] = (byte) payload.length;
+		
+		for(int i = 0; i < payload.length; i++) {
 			encoded[i + 1] = payload[i];
 		}
 		return encoded;
 	}
 
 	public void decapsulate(byte[] received) {
-		//TODO
-		// decapsulate the data contained in the received byte array and store it 
-		// in the payload of this message 
-		int length = received[0];
-		payload = new byte[length];
 		
-		for (int i = 0; i < payload.length; i++) {
-			payload[i] = received[i + 1];
+		byte[] decoded = new byte[received[0]];
+		
+		for (int i = 0; i < decoded.length; i++) {
+			decoded[i] = received[i + 1];
 
 		}
+		
+		payload = decoded;
 	}
 }
