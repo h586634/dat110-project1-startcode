@@ -33,7 +33,7 @@ public class RPCUtils {
 
 	public static String unmarshallString(byte[] data) {
 		byte[] nyData = new byte[data.length-1];
-		System.arraycopy(data, 1, nyData, 0, data.length);		
+		System.arraycopy(data, 1, nyData, 0, nyData.length);		
 
 		return new String(nyData, Charset.forName("ISO-8859-1"));
 	}
@@ -79,7 +79,7 @@ public class RPCUtils {
 
 	public static byte[] marshallInteger(byte rpcid, int x) {
 
-		ByteBuffer intByteArr = ByteBuffer.allocate(4).putInt(x);
+		byte[] intByteArr = ByteBuffer.allocate(4).putInt(x).array();
 		byte[] encoded = new byte[5];
 		
 		System.arraycopy(intByteArr, 0, encoded, 1, 4);
@@ -90,7 +90,7 @@ public class RPCUtils {
 	public static int unmarshallInteger(byte[] data) {
 
 		byte[] nyData = new byte[data.length-1];
-		System.arraycopy(data, 1, nyData, 0, data.length);	
+		System.arraycopy(data, 1, nyData, 0, nyData.length);	
 
 		return ByteBuffer.wrap(nyData).getInt();
 
