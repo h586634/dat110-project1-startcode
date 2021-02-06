@@ -14,7 +14,7 @@ public class MessagingClient {
 	}
 
 	// connect to messaging server
-	public Connection connect() {
+	public Connection connect() throws IOException{
 		
 		Socket clientSocket = null;
 		

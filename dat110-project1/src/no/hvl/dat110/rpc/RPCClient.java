@@ -1,5 +1,7 @@
 package no.hvl.dat110.rpc;
 
+import java.io.IOException;
+
 import no.hvl.dat110.messaging.*;
 
 public class RPCClient {
@@ -17,9 +19,13 @@ public class RPCClient {
 	}
 	
 	public void connect() {
-		
-		connection = msgclient.connect();
-					
+		try {
+			this.connection = msgclient.connect();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			
+		}
 	}
 	
 	public void disconnect() {

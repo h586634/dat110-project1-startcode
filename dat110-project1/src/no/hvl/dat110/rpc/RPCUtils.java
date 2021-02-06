@@ -21,7 +21,7 @@ public class RPCUtils {
 		byte[] encoded = new byte[srtByteArr.length+1];
 		encoded[0] = rpcid;
 		
-		System.arraycopy(encoded, 0, encoded, 1, srtByteArr.length);
+		System.arraycopy(srtByteArr, 0, encoded, 1, srtByteArr.length);
 		
 		/* lapp sammen, utgangspunkt:
 		System.arraycopy(firstArray, 0, result, 0, fal);
@@ -81,6 +81,7 @@ public class RPCUtils {
 
 		byte[] intByteArr = ByteBuffer.allocate(4).putInt(x).array();
 		byte[] encoded = new byte[5];
+		encoded[0] = rpcid;
 		
 		System.arraycopy(intByteArr, 0, encoded, 1, 4);
 
@@ -89,10 +90,16 @@ public class RPCUtils {
 
 	public static int unmarshallInteger(byte[] data) {
 
+		/*
+		System.out.println("Length of data array: " + data.length);
 		byte[] nyData = new byte[data.length-1];
-		System.arraycopy(data, 1, nyData, 0, nyData.length);	
+		if(data.length >= 0) 
+			System.arraycopy(data, 1, nyData, 0, nyData.length);	
 
 		return ByteBuffer.wrap(nyData).getInt();
+		*/
+		
+		return ByteBuffer.wrap(data, 1, 4).getInt();
 
 	}
 }

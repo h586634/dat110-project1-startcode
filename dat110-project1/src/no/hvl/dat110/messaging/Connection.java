@@ -18,9 +18,7 @@ public class Connection {
 		try {
 
 			this.socket = socket;
-
 			outStream = new DataOutputStream(socket.getOutputStream());
-
 			inStream = new DataInputStream(socket.getInputStream());
 
 		} catch (IOException ex) {
@@ -45,10 +43,10 @@ public class Connection {
 	public Message receive() {
 
 		Message message = new Message();
-		byte[] recvbuf = new byte[128];
+		byte[] recvbuf = new byte[MessageConfig.SEGMENTSIZE];
 		
 		try {
-			inStream.read(recvbuf);
+			inStream.read(recvbuf, 0, MessageConfig.SEGMENTSIZE);
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -61,13 +59,10 @@ public class Connection {
 	public void close() {
 
 		try {
-
 			outStream.close();
 			inStream.close();
-
 			socket.close();
 		} catch (IOException ex) {
-
 			System.out.println("Connection: " + ex.getMessage());
 			ex.printStackTrace();
 		}

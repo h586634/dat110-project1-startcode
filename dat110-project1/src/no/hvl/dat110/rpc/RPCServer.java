@@ -39,17 +39,17 @@ public class RPCServer {
 
 			Message incoming = connection.receive();
 
-			byte[] rData = incoming.getData();
+			byte[] response = incoming.getData();
 
-			if (rData.length > 0) {
-				int rpcid = rData[0];
+			if (response.length > 0) {
+				int rpcid = response[0];
 
 				if (rpcid == RPCCommon.RPIDSTOP) {
 					stop = true;
 					continue;
 				}
 
-				byte[] sData = services.get(rpcid).invoke(rData);
+				byte[] sData = services.get(rpcid).invoke(response);
 
 				try {
 					connection.send(new Message(sData));
